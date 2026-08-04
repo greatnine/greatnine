@@ -1,0 +1,459 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,700|Quattrocento:700');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: lighter;
+    background: white;
+    overflow: hidden;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+    body.switched {
+        transition: color 0.6s, background-color 0.6s;
+    }
+}
+
+h1,
+h2 {
+    text-align: center;
+    font-family: "Quattrocento", Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 30pt;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 14pt;
+    font-style: italic;
+    font-family: sans-serif;
+    font-weight: lighter;
+    color: #BBB;
+}
+
+.header {
+    padding-top: 3em;
+    padding-bottom: 3em;
+}
+
+/*
+  Built-in class:
+    # author: Name
+*/
+.byline {
+    font-style: italic;
+}
+
+.written-in-ink {
+    z-index: 3;
+    font-size: 9pt;
+    font-family: sans-serif;
+    text-align: center;
+    font-weight: 700;
+    position: fixed;
+    display: block;
+    width: 100%;
+    background: white;
+    margin: 0;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    height: 14px;
+    top: 0;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+    .written-in-ink {
+        transition: color 0.6s, background 0.6s;
+    }
+}
+
+/* 
+  Enables <iframe> support work on itch.io when using mobile iOS
+*/
+.outerContainer {
+    position: absolute;
+    display: block;
+    margin: 0;
+    padding: 0;
+    -webkit-overflow-scrolling: touch;
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin-top: 24px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 980px) {
+    .outerContainer {
+        margin-top: 44px;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+.container {
+    display: block;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 4em;
+    background: white;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+    .switched .container {
+        transition: background-color 0.6s;
+    }
+}
+
+/*p {
+    font-size: 13pt;
+    color: #888;
+    line-height: 1.7em;
+    font-weight: lighter;
+}*/
+
+a {
+    font-weight: 700;
+    color: #b97c2c;
+    font-family: sans-serif;
+    text-decoration: none;
+}
+
+.unclickable {
+    font-weight: 700;
+    color: #4f3411;
+    font-family: sans-serif;
+    text-decoration: none;
+    cursor: not-allowed;
+}
+
+a:hover {
+    color: black;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+    a {
+        transition: color 0.6s;
+    }
+
+    a:hover {
+        transition: color 0.1s;
+    }
+}
+
+strong {
+    color: black;
+    font-weight: bold;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.container .hide {
+    opacity: 0.0;
+}
+
+.container .invisible {
+    display: none;
+}
+
+.container>* {
+    opacity: 1.0;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+    .container>* {
+        transition: opacity 1.0s;
+    }
+}
+
+/*
+  Class applied to all choices
+  (Will always appear inside <p> element by default.)
+*/
+.choice {
+    text-align: center;
+    line-height: 1.7em;
+}
+
+/* 
+  Class applied to first choice
+*/
+:not(.choice)+.choice {
+    padding-top: 1em;
+}
+
+/*
+  Class applied to choice links
+*/
+.choice a, .choice span {
+    font-size: 15pt;
+}
+
+/* 
+  Built-in class:
+    The End # CLASS: end
+*/
+.end {
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#controls {
+    z-index: 4;
+    font-size: 9pt;
+    text-align: center;
+    padding-bottom: 6px;
+    user-select: none;
+    display: flex;
+    gap: 12px;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+    #controls {
+        transition: color 0.6s, background 0.6s;
+    }
+}
+
+#controls [disabled] {
+    color: #ccc;
+}
+
+#controls>*:not(:last-child):after {
+    content: " | ";
+}
+
+@media screen and (max-width: 980px) {
+    #controls {
+        z-index: 2;
+        padding-top: 0;
+    }
+}
+
+/* 
+  Dark Theme (Added in Inky 0.10.0)
+    # theme: dark
+*/
+
+body.dark {
+    background: black;
+    color: white;
+}
+
+.dark h2 {
+    color: #666;
+}
+
+.dark .container {
+    background: black;
+}
+
+.dark .written-in-ink {
+    background: black;
+}
+
+.dark a {
+    color: #cc8f1a;
+}
+.dark .unclickable{
+    color: #c4af87;
+    cursor:not-allowed;
+}
+
+.dark a:hover {
+    color: white;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+    .dark a {
+        transition: color 0.6s;
+    }
+}
+
+.dark strong {
+    color: white;
+}
+
+.dark #controls [disabled] {
+    color: #444;
+}
+
+.dark .end {
+    color: white;
+}
+
+.dark #controls {
+    background: black;
+}
+
+
+/* 选择后 正文插入<hr>*/
+.ink-choice-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(120,120,120,0.55), transparent);
+    margin: 1.6em 0;
+}
+body.dark .ink-choice-divider {
+    background: linear-gradient(to right, transparent, rgba(200,200,200,0.55), transparent);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========== TRAE 移动端适配核心 ========== */
+
+/* 1. iOS安全区+防止文字自动放大 */
+html, body {
+    margin: 0;
+    padding: 0;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+/* 2. 修复100vh动态高度问题 */
+.outerContainer {
+    position: absolute;
+    display: block;
+    margin: 0;
+    padding: 0;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh;
+    height: 100dvh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin-top: 0;
+}
+
+/* 3. 故事正文容器 */
+#story {
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    padding: 16px 20px !important;
+    padding-bottom: calc(80px + env(safe-area-inset-bottom)) !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+/* 4. 段落文字优化 */
+#story p {
+    font-size: 15pt !important;
+    line-height: 1.7em !important;
+    color: black !important;
+}
+
+/* 5. 选择支保持原版样式 */
+.choice {
+    text-align: center;
+    line-height: 1.7em;
+}
+
+.choice a, .choice span {
+    font-size: 15pt;
+}
+
+/* 6. 图片自适应 */
+#story img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* 7. 页眉横排容器（替代原written-in-ink） */
+/* written-in-ink样式已由header-bar替代，保留以防万一 */
+
+/* 8. 控制按钮区域 */
+#controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 9. 页眉和菜单横排居中 */
+.header-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: calc(6px + env(safe-area-inset-top)) 14px 6px 14px;
+    z-index: 100;
+    background: white;
+    flex-wrap: wrap;
+}
+
+.header-bar a {
+    font-size: 9pt;
+    font-family: sans-serif;
+    font-weight: 700;
+    color: #b97c2c;
+    text-decoration: none;
+}
+
+#controls a {
+    font-size: 11pt;  /*9pt*/
+    font-family: sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* 10. 暗色主题正文和页眉 */
+.dark #story p {
+    color: white !important;
+}
+
+.dark .header-bar {
+    background: black;
+}
+
+/* 11. 手机端媒体查询 */
+@media screen and (max-width: 600px) {
+    #story {
+        padding: 12px 14px !important;
+    }
+    
+    h1 {
+        font-size: 22pt !important;
+    }
+    
+    h2 {
+        font-size: 12pt !important;
+    }
+}
