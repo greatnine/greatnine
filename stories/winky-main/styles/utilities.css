@@ -1,0 +1,20 @@
+/* STORY */
+.end {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* LAYOUT */
+.block {
+  display: block;
+}
+
+/* TYPOGRAPHY */
+.strike {
+  text-decoration: line-through;
+}
+
+/* SIZING */
+.w-full {
+  width: 100%;
+}

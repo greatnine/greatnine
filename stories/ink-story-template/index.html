@@ -1,0 +1,97 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title class="title"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.ico" />
+    <!-- Prevent dark mode flash - must be before CSS -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("ink-template-settings");
+          var settings = stored ? JSON.parse(stored) : null;
+          var theme = settings && settings.theme ? settings.theme : "auto";
+          var isDark =
+            theme === "dark" ||
+            (theme === "auto" &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (isDark) document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="stylesheet" href="css/template.min.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+  </head>
+
+  <body>
+    <!-- Loading screen - hidden after story initializes -->
+    <div id="loading-screen" class="loading-screen" aria-live="polite">
+      <div class="loading-content">
+        <div class="loading-spinner" aria-label="Loading story"></div>
+      </div>
+    </div>
+    <a href="#story" class="skip-link">Skip to story content</a>
+    <!-- Top navigation bar -->
+    <nav class="top-nav" aria-label="Story">
+      <div class="nav-title-section">
+        <div class="nav-title-wrapper">
+          <h1 class="nav-title title"></h1>
+          <button
+            type="button"
+            id="title-restart"
+            class="nav-title-btn"
+            aria-hidden="true"
+            tabindex="-1"
+          ></button>
+        </div>
+        <span class="nav-byline byline"></span>
+      </div>
+      <div class="nav-controls">
+        <button
+          id="rewind"
+          type="button"
+          aria-label="Restart story"
+          aria-keyshortcuts="Control+r"
+        >
+          <span class="material-icons-outlined nav-icon" aria-hidden="true"
+            >replay</span
+          >
+        </button>
+        <button
+          id="saves-btn"
+          type="button"
+          aria-label="Saves"
+          aria-keyshortcuts="Control+s"
+        >
+          <span class="material-icons-outlined nav-icon" aria-hidden="true"
+            >bookmark</span
+          >
+        </button>
+        <button
+          id="settings-btn"
+          type="button"
+          aria-label="Settings"
+          aria-keyshortcuts="Control+,"
+        >
+          <span class="material-icons-outlined nav-icon" aria-hidden="true"
+            >settings</span
+          >
+        </button>
+      </div>
+    </nav>
+    <main class="outerContainer" id="main-content" aria-busy="true">
+      <!-- Story container -->
+      <div
+        id="story"
+        role="region"
+        aria-label="Story content"
+        class="container"
+        tabindex="-1"
+      ></div>
+    </main>
+
+    <script src="js/template.min.js" defer></script>
+    <script src="js/custom.js" defer></script>
+  </body>
+</html>

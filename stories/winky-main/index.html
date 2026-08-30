@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Search engine and Bookmark titles -->
+    <title>
+      Interactive Fiction and Choose Your Own Adventure, by Geoffrey Golden
+    </title>
+    <!-- No messy with this :) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- This allows adjusting iOS device (and more?) info bar via the 'Theme' control button -->
+    <meta name="theme-color" content="" />
+    <!-- Reset/Normalize stylesheet for multibrowser conformity -->
+    <link rel="stylesheet" href="./styles/modern-normalize.min.css" />
+    <style type="text/css" id="headStyle"></style>
+    <!-- Fonts -->
+    <script src="./src/head.js" rel="preload"></script>
+    <!-- The master stylesheet -->
+    <link rel="stylesheet" href="./styles/globals.css" />
+  </head>
+
+  <body>
+    <div id="root">
+      <div id="header-box">
+        <header id="header">
+          <!-- NOTE: Consider changing 'producer' to something generic, considering the header could also be used for the story title -->
+          <h1 class="producer">
+            <a href="https://www.adventuresnack.com/">ADVENTURE SNACK</a>
+          </h1>
+
+          <nav id="controls" class="buttons">
+            <a id="restart" title="Restart story from beginning">Restart</a>
+            <span>|</span>
+            <a id="save" title="Save progress">Save</a>
+            <span>|</span>
+            <a id="reload" title="Reload from save point">Load</a>
+            <span>|</span>
+            <a id="theme-switch" title="Switch theme">Theme</a>
+          </nav>
+        </header>
+      </div>
+
+      <!-- Hide story until finished loading -->
+      <div id="story-box">
+        <main id="story" style="opacity: 0">
+          <!-- STORY INSERTED BY SCRIPT HERE -->
+        </main>
+      </div>
+    </div>
+
+    <script src="./src/ink.js"></script>
+    <script src="story.js"></script>
+    <script src="./src/main.js"></script>
+  </body>
+</html>

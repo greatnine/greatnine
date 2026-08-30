@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,700|Quattrocento:700');
+
+/* ============================================================
+   主题变量(集中管理颜色,暗色主题只覆盖变量值)
+   原 .dark xxx 散落十多处选择器,统一收归于此
+   ============================================================ */
+:root {
+    --color-bg: white;
+    --color-text: black;
+    --color-text-read: #5360a3;      /* 已读正文(浅色) */
+    --color-text-header: #BBB;       /* h2 副标题 */
+    --color-accent: #b97c2c;         /* 链接 */
+    --color-accent-hover: black;
+    --color-unclickable: #4f3411;
+    --color-strong: black;
+    --color-disabled: #ccc;
+    --color-end: black;
+    --color-divider: rgba(120,120,120,0.55);
+    --color-bar-bg: white;           /* 顶部固定栏背景 */
+    --color-container-bg: white;     /* #story 背景 */
+}
+
+body.dark {
+    --color-bg: black;
+    --color-text: white;
+    --color-text-read: #becaf3;      /* 已读正文(暗色) */
+    --color-text-header: #666;
+    --color-accent: #cc8f1a;
+    --color-accent-hover: white;
+    --color-unclickable: #c4af87;
+    --color-strong: white;
+    --color-disabled: #444;
+    --color-end: white;
+    --color-divider: rgba(200,200,200,0.55);
+    --color-bar-bg: black;
+    --color-container-bg: black;
+}
+
+/* ============================================================
+   基础排版
+   原 body 与 TRAE html,body 合并
+   ============================================================ */
+html, body {
+    margin: 0;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: lighter;
+    background: var(--color-bg);
+    color: var(--color-text);
+    overflow: hidden;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+    body.switched {
+        transition: color 0.6s, background-color 0.6s;
+    }
+}
+
+/* ============================================================
+   标题
+   ============================================================ */
+h1, h2 {
+    text-align: center;
+    font-family: "Quattrocento", Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 { font-size: 30pt; margin-bottom: 10px; }
+
+h2 {
+    font-size: 14pt;
+    font-style: italic;
+    font-family: sans-serif;
+    font-weight: lighter;
+    color: var(--color-text-header);
+}
+
+.header { padding-top: 3em; padding-bottom: 3em; }
+.byline { font-style: italic; }
+
+/* ============================================================
+   滚动容器(.outerContainer)
+   原始定义与 TRAE 定义合并,删除失效的 980px 媒体查询
+   ============================================================ */
+.outerContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* ============================================================
+   故事正文容器(#story,原 .container 已合并至此)
+   去掉 !important:无冲突规则后不再需要强制覆盖
+   ============================================================ */
+#story {
+    display: block;
+    max-width: 600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 16px 20px;
+    padding-bottom: calc(80px + env(safe-area-inset-bottom));
+    background: var(--color-container-bg);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+    .switched #story {
+        transition: background-color 0.6s;
+    }
+}
+
+/* ============================================================
+   正文段落
+   ============================================================ */
+#story p {
+    font-size: 15pt;
+    line-height: 1.7em;
+    color: var(--color-text);
+}
+
+/* 已读正文:颜色变浅,与刚跳转显示的新正文区分 */
+#story p.ink-read {
+    color: var(--color-text-read);
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+    #story p.ink-read {
+        transition: color 0.6s ease;
+    }
+}
+
+/* ============================================================
+   显隐动画(main.js 的 showAfter 用 .hide 控制淡入)
+   原 .container .hide / .container > * 改为 #story 作用域
+   ============================================================ */
+#story .hide { opacity: 0.0; }
+#story .invisible { display: none; }
+#story > * { opacity: 1.0; }
+
+@media screen and (prefers-reduced-motion: no-preference) {
+    #story > * {
+        transition: opacity 1.0s;
+    }
+}
+
+/* ============================================================
+   链接、强调、图片
+   ============================================================ */
+a {
+    font-weight: 700;
+    color: var(--color-accent);
+    font-family: sans-serif;
+    text-decoration: none;
+}
+
+a:hover { color: var(--color-accent-hover); }
+
+.unclickable {
+    font-weight: 700;
+    color: var(--color-unclickable);
+    font-family: sans-serif;
+    text-decoration: none;
+    cursor: not-allowed;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+    a { transition: color 0.6s; }
+    a:hover { transition: color 0.1s; }
+}
+
+strong {
+    color: var(--color-strong);
+    font-weight: bold;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ============================================================
+   选项(choice)
+   原 .choice 定义与 TRAE 重复定义合并
+   ============================================================ */
+.choice {
+    text-align: center;
+    line-height: 1.7em;
+}
+
+:not(.choice) + .choice { padding-top: 1em; }
+
+.choice a, .choice span { font-size: 15pt; }
+
+/* ============================================================
+   结尾
+   ============================================================ */
+.end {
+    text-align: center;
+    font-weight: bold;
+    color: var(--color-end);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* ============================================================
+   选择分割线(选项点击后由 main.js 插入)
+   ============================================================ */
+.ink-choice-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-divider), transparent);
+    margin: 1.6em 0;
+}
+
+/* ============================================================
+   顶部固定栏(header-bar + #controls)
+   .written-in-ink 已废弃删除,统一由 .header-bar 承担
+   ============================================================ */
+.header-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: calc(6px + env(safe-area-inset-top)) 14px 6px 14px;
+    z-index: 100;
+    background: var(--color-bar-bg);
+    flex-wrap: wrap;
+}
+
+.header-bar a,
+#controls a {
+    font-family: sans-serif;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+.header-bar a { font-size: 9pt; }
+#controls a { font-size: 11pt; }
+
+#controls {
+    z-index: 4;
+    font-size: 9pt;
+    text-align: center;
+    padding-bottom: 6px;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#controls [disabled] { color: var(--color-disabled); }
+
+#controls > *:not(:last-child):after {
+    content: " | ";
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+    #controls {
+        transition: color 0.6s, background 0.6s;
+    }
+}
+
+/* ============================================================
+   响应式(移动端)
+   合并原 980px(已失效)与 600px 断点,仅保留 600px
+   ============================================================ */
+@media screen and (max-width: 600px) {
+    #story {
+        padding: 12px 14px;
+        padding-bottom: calc(80px + env(safe-area-inset-bottom));
+    }
+
+    h1 { font-size: 22pt; }
+    h2 { font-size: 12pt; }
+}
